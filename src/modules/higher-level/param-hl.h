@@ -350,6 +350,7 @@ typedef struct {
   int oare;
   int ocon; // GLCM contrast
   int odis; // GLCM dissimilarity
+  int ohom; // GLCM homogenity
   char *base;
   int kernel;
 } par_lsm_t;

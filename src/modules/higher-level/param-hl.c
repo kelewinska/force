@@ -741,6 +741,8 @@ int i;
       lsm->ocon = true;
     } else if (lsm->metrics[i] == _LSM_DIS_) {
       lsm->odis = true;
+    } else if (lsm->metrics[i] == _LSM_HOM_) {
+      lsm->ohom = true;
     } else {
       printf("warning: unknown lsm.\n");
     }
