@@ -351,6 +351,8 @@ typedef struct {
   int ocon; // GLCM contrast
   int odis; // GLCM dissimilarity
   int ohom; // GLCM homogenity
+  int oent; // GLCM entropy
+  int ouni; // GLCM uniformity
   char *base;
   int kernel;
 } par_lsm_t;

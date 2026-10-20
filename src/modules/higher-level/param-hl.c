@@ -743,6 +743,10 @@ int i;
       lsm->odis = true;
     } else if (lsm->metrics[i] == _LSM_HOM_) {
       lsm->ohom = true;
+    } else if (lsm->metrics[i] == _LSM_ENT_) {
+      lsm->oent = true;
+    } else if (lsm->metrics[i] == _LSM_UNI_) {
+      lsm->ouni = true;
     } else {
       printf("warning: unknown lsm.\n");
     }

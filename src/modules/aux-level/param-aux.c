@@ -2480,12 +2480,12 @@ void write_par_hl_lsm(FILE *fp, bool verbose){
     fprintf(fp, "# effective mesh size.\n");
     fprintf(fp, "# Additionally, arithmetic mean, geometric mean, standard deviation, maximum value\n");
     fprintf(fp, "# and the area of the foreground class within the kernel are available.\n");
-    fprintf(fp, "# Furthermore, image GLCM texture measures of contrast, dissimilarity, and homogenity\n");
-    fprintf(fp, "#are available. These measurese are calculated for the complete wall-to-wall scene\n");
-    fprintf(fp, "#regardless of thresholds.\n");
-    fprintf(fp, "# Type: Character list. Valid values: {UCI,MPA,FDI,EDD,NBR,EMS,AVG,GEO,STD,MAX,ARE,CON,DIS,HOM}\n");
+    fprintf(fp, "# Furthermore, image GLCM texture measures of contrast, dissimilarity, homogenity,\n");
+    fprintf(fp, "# entropy, and uniformity are available. These measurese are calculated for the\n");
+    fprintf(fp, "# complete wall-to-wall scene regardless of thresholds.\n");
+    fprintf(fp, "# Type: Character list. Valid values: {UCI,MPA,FDI,EDD,NBR,EMS,AVG,GEO,STD,MAX,ARE,CON,DIS,HOM,ENT,UNI}\n");
   }
-  fprintf(fp, "LSM = UCI MPA FDI EDD NBR EMS AVG GEO STD MAX ARE CON DIS HOM\n");
+  fprintf(fp, "LSM = UCI MPA FDI EDD NBR EMS AVG GEO STD MAX ARE CON DIS HOM ENT UNI\n");
 
   if (verbose){
     fprintf(fp, "# This parameter defines the basename for the output files. The basename will\n");

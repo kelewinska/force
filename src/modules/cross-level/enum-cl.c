@@ -172,7 +172,8 @@ const tagged_enum_t _TAGGED_ENUM_LSM_[_LSM_LENGTH_] = {
   { _LSM_EDD_, "EDD" }, { _LSM_NBR_, "NBR" }, { _LSM_EMS_, "EMS" }, 
   { _LSM_AVG_, "AVG" }, { _LSM_STD_, "STD" }, { _LSM_GEO_, "GEO" }, 
   { _LSM_MAX_, "MAX" }, { _LSM_ARE_, "ARE" }, { _LSM_CON_, "CON" },
-  { _LSM_DIS_, "DIS" }, { _LSM_HOM_, "HOM"}};
+  { _LSM_DIS_, "DIS" }, { _LSM_HOM_, "HOM" }, { _LSM_ENT_, "ENT" },
+  { _LSM_UNI_, "UNI" }};
 
 const tagged_enum_t _TAGGED_ENUM_KERNEL_[_KERNEL_LENGTH_] = {
   { _KERNEL_SQUARE_, "SQUARE" }, { _KERNEL_CIRCLE_, "CIRCLE" }};
