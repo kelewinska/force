@@ -198,14 +198,13 @@ LSM_ALL_PIXELS = FALSE
 # effective mesh size.
 # Additionally, arithmetic mean, geometric mean, standard deviation, maximum value
 # and the area of the foreground class within the kernel are available.
-# Furthermore, image GLCM texture measures of contrast, dissimilarity, and homogenity
-# are available. These measurese are calculated for the complete wall-to-wall scene
-# regardless of thresholds.
-# Type: Character list. Valid values: {UCI,MPA,FDI,EDD,NBR,EMS,AVG,GEO,STD,MAX,ARE,CON,DIS,HOM}
-LSM = UCI MPA FDI EDD NBR EMS AVG GEO STD MAX ARE CON DIS HOM
+# Type: Character list. Valid values: {UCI,MPA,FDI,EDD,NBR,EMS,AVG,GEO,STD,MAX,ARE}
+LSM = UCI MPA FDI EDD NBR EMS AVG GEO STD MAX ARE
 # This parameter defines the basename for the output files. The basename will
 # be appended by Module ID, product ID, and the file extension.
 # Type: Character.
+
+
 LSM_BASE = LSM
 
 ++PARAM_LSM_END++

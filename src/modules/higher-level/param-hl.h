@@ -348,6 +348,25 @@ typedef struct {
   int ogeo;
   int omax;
   int oare;
+  // int ocon; // GLCM contrast
+  // int odis; // GLCM dissimilarity
+  // int ohom; // GLCM homogenity
+  // int oent; // GLCM entropy
+  // int ouni; // GLCM uniformity
+  char *base;
+  int kernel;
+} par_lsm_t;
+
+// GLCM metrics
+typedef struct {
+  double radius;
+  int minpatchsize;
+  int *query;
+  int nquery;
+  int *threshold;
+  int nthreshold;
+  int *metrics, nmetrics;
+  int allpx;
   int ocon; // GLCM contrast
   int odis; // GLCM dissimilarity
   int ohom; // GLCM homogenity
@@ -355,7 +374,7 @@ typedef struct {
   int ouni; // GLCM uniformity
   char *base;
   int kernel;
-} par_lsm_t;
+} par_glcm_t;
 
 // library completeness testing
 typedef struct {

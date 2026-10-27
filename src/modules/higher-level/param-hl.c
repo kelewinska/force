@@ -737,18 +737,47 @@ int i;
       lsm->omax = true;
     } else if (lsm->metrics[i] == _LSM_ARE_){
       lsm->oare = true;
-    } else if (lsm->metrics[i] == _LSM_CON_) {
-      lsm->ocon = true;
-    } else if (lsm->metrics[i] == _LSM_DIS_) {
-      lsm->odis = true;
-    } else if (lsm->metrics[i] == _LSM_HOM_) {
-      lsm->ohom = true;
-    } else if (lsm->metrics[i] == _LSM_ENT_) {
-      lsm->oent = true;
-    } else if (lsm->metrics[i] == _LSM_UNI_) {
-      lsm->ouni = true;
+    // } else if (lsm->metrics[i] == _LSM_CON_) {
+    //   lsm->ocon = true;
+    // } else if (lsm->metrics[i] == _LSM_DIS_) {
+    //   lsm->odis = true;
+    // } else if (lsm->metrics[i] == _LSM_HOM_) {
+    //   lsm->ohom = true;
+    // } else if (lsm->metrics[i] == _LSM_ENT_) {
+    //   lsm->oent = true;
+    // } else if (lsm->metrics[i] == _LSM_UNI_) {
+    //   lsm->ouni = true;
     } else {
       printf("warning: unknown lsm.\n");
+    }
+  }
+
+  return SUCCESS;
+}
+
+
+/** This function reparses GLCM statistics (special para-
++++ meter that cannot be parsed with the general parser).
+--- glcm:    glcm parameters
++++ Return: SUCCESS/FAILURE
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++**/
+int parse_glcm(par_glcm_t *glcm){
+int i;
+
+
+  for (i=0; i<glcm->nmetrics; i++){
+    if (glcm->metrics[i] == _GLCM_CON_) {
+      glcm->ocon = true;
+    } else if (glcm->metrics[i] == _GLCM_DIS_) {
+      glcm->odis = true;
+    } else if (glcm->metrics[i] == _GLCM_HOM_) {
+      glcm->ohom = true;
+    } else if (glcm->metrics[i] == _GLCM_ENT_) {
+      glcm->oent = true;
+    } else if (glcm->metrics[i] == _GLCM_UNI_) {
+      glcm->ouni = true;
+    } else {
+      printf("warning: unknown glcm.\n");
     }
   }
 
