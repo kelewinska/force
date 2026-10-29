@@ -360,6 +360,7 @@ typedef struct {
 // GLCM metrics
 typedef struct {
   int winsizes;
+  int *metrics, nmetrics;
   int ocon; // GLCM contrast
   int odis; // GLCM dissimilarity
   int ohom; // GLCM homogenity
