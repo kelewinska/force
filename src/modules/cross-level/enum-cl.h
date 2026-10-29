@@ -249,7 +249,8 @@ enum { _LSM_MPA_, _LSM_UCI_, _LSM_FDI_, _LSM_EDD_, _LSM_NBR_,
       _LSM_LENGTH_ };
 
 // GLCM statistics
-enum { _LSM_CON_, _LSM_DIS_, _LSM_HOM_, _LSM_ENT_, _LSM_UNI_ }
+enum { _GLCM_CON_, _GLCM_DIS_, _GLCM_HOM_, _GLCM_ENT_, _GLCM_UNI_,
+       _GLCM_LENGTH_ };
 
 // satellite mission
 enum { LANDSAT, SENTINEL2, _UNKNOWN_, _MISSION_LENGTH_ };

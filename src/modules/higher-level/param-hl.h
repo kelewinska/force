@@ -359,21 +359,13 @@ typedef struct {
 
 // GLCM metrics
 typedef struct {
-  double radius;
-  int minpatchsize;
-  int *query;
-  int nquery;
-  int *threshold;
-  int nthreshold;
-  int *metrics, nmetrics;
-  int allpx;
+  int winsizes;
   int ocon; // GLCM contrast
   int odis; // GLCM dissimilarity
   int ohom; // GLCM homogenity
   int oent; // GLCM entropy
   int ouni; // GLCM uniformity
   char *base;
-  int kernel;
 } par_glcm_t;
 
 // library completeness testing

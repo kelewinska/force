@@ -55,7 +55,7 @@ typedef struct {
   short **hom_; // GLCM homogenity
   short **ent_; // GLCM entropy
   short **uni_; // GLCM uniformity
-} lsm_t;
+} glcm_t;
 
 brick_t **glcm_statistics(ard_t *features, brick_t *mask, int nf, par_hl_t *phl, cube_t *cube, int *nproduct);
 
