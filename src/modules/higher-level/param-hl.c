@@ -53,6 +53,7 @@ int parse_sta(par_sta_t *sta);
 int parse_pol(par_pol_t *pol);
 int parse_txt(par_txt_t *txt);
 int parse_lsm(par_lsm_t *lsm);
+int parse_glcm(par_glcm_t *glcm);
 int parse_quality(par_qai_t *qai);
 
 
@@ -456,6 +457,22 @@ void register_lsm(params_t *params, par_hl_t *phl){
   register_enumvec_par(params, "LSM", _TAGGED_ENUM_LSM_, _LSM_LENGTH_, -1, &phl->lsm.metrics, &phl->lsm.nmetrics);
   register_char_par(params,    "LSM_BASE",  _CHAR_TEST_NONE_, &phl->lsm.base);
   register_enum_par(params,    "LSM_KERNEL_SHAPE", _TAGGED_ENUM_KERNEL_, _KERNEL_LENGTH_, &phl->lsm.kernel);
+    
+  return;
+}
+
+
+/** This function registers GLCM statistics
+--- params: registered parameters
+--- phl:    HL parameters
++++ Return: void
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++**/
+void register_glcm(params_t *params, par_hl_t *phl){
+
+
+  register_int_par(params,  "GLCM_WINDOW",    0, 1e6,  &phl->glcm.winsize);
+  register_enumvec_par(params, "GLCM", _TAGGED_ENUM_GLCM_, _GLCM_LENGTH_, -1, &phl->glcm.metrics, &phl->glcm.nmetrics);
+  register_char_par(params,    "GLCM_BASE",  _CHAR_TEST_NONE_, &phl->glcm.base);
     
   return;
 }
@@ -959,6 +976,10 @@ double tol = 5e-3;
     phl->type = _HL_LSM_;
     phl->input_level1 = _INP_FTR_;
     phl->input_level2 = _INP_NONE_;
+  } else if (strcmp(buffer, "++PARAM_GLCM_START++") == 0){
+    phl->type = _HL_GLCM_;
+    phl->input_level1 = _INP_FTR_;
+    phl->input_level2 = _INP_NONE_;
   } else if (strcmp(buffer, "++PARAM_LIB_START++") == 0){
     phl->type = _HL_LIB_;
     phl->input_level1 = _INP_FTR_;
@@ -1027,6 +1048,9 @@ double tol = 5e-3;
     case _HL_LSM_:
       register_lsm(phl->params, phl);
       break;
+    case _HL_GLCM_:
+      register_lsm(phl->params, phl);
+      break;
     case _HL_LIB_:
       register_lib(phl->params, phl);
       break;
@@ -1083,6 +1107,8 @@ double tol = 5e-3;
   if (phl->type == _HL_TXT_) parse_txt(&phl->txt);
   
   if (phl->type == _HL_LSM_) parse_lsm(&phl->lsm);
+
+  if (phl->type == _HL_GLCM_) parse_glcm(&phl->glcm);
 
   if (phl->input_level1 == _INP_FTR_) parse_ftr(&phl->ftr);
 
@@ -1193,6 +1219,9 @@ double tol = 5e-3;
   } else if (phl->type == _HL_LSM_){
     phl->radius = phl->lsm.radius;
     phl->lsm.radius = (int)(phl->lsm.radius/phl->res);
+  // } else if (phl->type == _HL_GLCM_){
+  //   phl->radius = phl->glcm.winsize;
+  //   phl->glcm.winsize = (int)(phl-glcm.winsize/phl->res);
   } else if (phl->type == _HL_L2I_ || phl->type == _HL_CFI_){
     if (phl->imp.pred_radius > phl->imp.text_radius){
       phl->radius = phl->imp.pred_radius;

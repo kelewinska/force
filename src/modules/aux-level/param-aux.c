@@ -2512,7 +2512,7 @@ void write_par_hl_glcm(FILE *fp, bool verbose){
     fprintf(fp, "GLCM statistics (in pixels). The value must be an odd integer.\n");
     fprintf(fp, "Type: Integer. Valid values: ]3,CHUNK_SIZE]\n");
   }
-  fprintf(fp, "GLCM_RADIUS = 3\n");
+  fprintf(fp, "GLCM_WINDOW = 3\n");
  
   if (verbose){
     fprintf(fp, "# Which Gray-Level Co-occurrence Matrix (GLCM) Statistics should be computed?\n");

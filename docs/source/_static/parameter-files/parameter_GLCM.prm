@@ -28,6 +28,7 @@ BASE_MASK = NULL
 # of the affected block of data (default).
 # Type: Character. Valid values: {STOP, SKIP}
 READ_ERROR_MASK = SKIP
+READ_ERROR_PRIMARY = SKIP
 
 # OUTPUT OPTIONS
 # ------------------------------------------------------------------------
@@ -138,8 +139,6 @@ RESOLUTION = 10
 # machine learning models with force-train.
 # Type: Basename of file, followed by Integer list
 INPUT_FEATURE = 2018-2018_001-365_LEVEL4_TSA_SEN2L_NDV_STM.tif 1 2 3 4 5 6
-INPUT_FEATURE = 2018-2018_001-365_LEVEL4_TSA_SEN2L_NIR_STM.tif 7 8 9 10 11 12 13
-INPUT_FEATURE = 2018-2018_001-365_LEVEL4_TSA_SEN2L_RED_STM.tif 1 2 3 4 5 6 7 8 9 10 11 12 13
 # Nodata value of the features.
 # Type: Integer. Valid values: [-32768,32767]
 FEATURE_NODATA = -9999

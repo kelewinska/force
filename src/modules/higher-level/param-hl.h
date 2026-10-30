@@ -348,18 +348,13 @@ typedef struct {
   int ogeo;
   int omax;
   int oare;
-  // int ocon; // GLCM contrast
-  // int odis; // GLCM dissimilarity
-  // int ohom; // GLCM homogenity
-  // int oent; // GLCM entropy
-  // int ouni; // GLCM uniformity
   char *base;
   int kernel;
 } par_lsm_t;
 
 // GLCM metrics
 typedef struct {
-  int winsizes;
+  int winsize;
   int *metrics, nmetrics;
   int ocon; // GLCM contrast
   int odis; // GLCM dissimilarity
@@ -495,6 +490,7 @@ typedef struct {
   par_smp_t smp;
   par_txt_t txt;
   par_lsm_t lsm;
+  par_glcm_t glcm;
   par_lib_t lib;
   par_udp_t udf;
 
