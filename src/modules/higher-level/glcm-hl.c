@@ -132,8 +132,6 @@ char dname[NPOW_10];
 char subname[NPOW_10];
 int nchar;
 
-  if ((brick = copy_brick(from, nb, _DT_SHORT_)) == NULL) return NULL;
-
   set_brick_name(brick, "FORCE GLCM statistics");
   set_brick_product(brick, prodname);
 
@@ -192,6 +190,8 @@ small *mask_ = NULL;
 int nprod = 0;
 int f, nx, ny;
 short nodata;
+
+  printf("GLCM: entered, nf=%d, winsize=%d\n", nf, phl->glcm.winsize); fflush(stdout);
 
   cite_me(_CITE_GLCM_);
 
@@ -358,6 +358,7 @@ short nodata;
     }
 
   }
+  
 
   *nproduct = nprod;
   return GLCM;

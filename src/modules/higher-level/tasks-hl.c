@@ -210,7 +210,7 @@ bool error = false;
           nt1[pu], phl, cube, &nprod[pu]);
         break;
       case _HL_GLCM_:
-        OUTPUT[pu] = landscape_metrics(ARD1[pu], MASK[pu], 
+        OUTPUT[pu] = glcm_statistics(ARD1[pu], MASK[pu], 
           nt1[pu], phl, cube, &nprod[pu]);
         break;
       case _HL_L2I_:
