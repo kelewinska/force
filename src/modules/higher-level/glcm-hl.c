@@ -22,7 +22,7 @@ along with FORCE.  If not, see <http://www.gnu.org/licenses/>.
 
 /**+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 This file contains functions for library completeness testing
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++**/
++++++++++++++++++++++++++++++++ ++++++++++++++++++++++++++++++++++++++++**/
 
 /**+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  Gray-Level Co-occurrence Matrix (GLCM) header
@@ -134,7 +134,7 @@ int nchar;
 
   if ((brick = copy_brick(from, nb, _DT_SHORT_)) == NULL) return NULL;
 
-  set_brick_name(brick, "FORCE Landscape Metrics");
+  set_brick_name(brick, "FORCE GLCM statistics");
   set_brick_product(brick, prodname);
 
   if (phl->subfolders){
@@ -202,7 +202,7 @@ short nodata;
     return NULL;
   }
   if (phl->glcm.winsize % 2 == 0){
-    printf("Window size must be odd so the window has a centre pixel (got %d).\n", phl->lsm.winsize);
+    printf("Window size must be odd so the window has a centre pixel (got %d).\n", phl->glcm.winsize);
     *nproduct = 0;
     return NULL;
   }
@@ -239,14 +239,14 @@ short nodata;
       int k, cell, gi, gj, ntouched = 0, glcm_count;
       int ws = phl->glcm.winsize;           // window size in pixels, e.g. 3 = 3x3
       int top, bottom, left, right;        // window bounds around the current pixel
-      int *glcm = NULL, *touched = NULL;   // per-thread matrix + list of used cells
+      int *comat = NULL, *touched = NULL;  // per-thread matrix + list of used cells
       double diff, prob;
       double glcm_dis_sum, glcm_hom_sum, glcm_con_sum, glcm_ent, glcm_uni;
 
       if (phl->glcm.oent || phl->glcm.ouni){
-        alloc((void**)&glcm,    GLCM_NLEVELS*GLCM_NLEVELS, sizeof(int));
+        alloc((void**)&comat,   GLCM_NLEVELS*GLCM_NLEVELS, sizeof(int));
         alloc((void**)&touched, GLCM_NLEVELS*GLCM_NLEVELS, sizeof(int));
-        memset(glcm, 0, GLCM_NLEVELS*GLCM_NLEVELS*sizeof(int));
+        memset(comat, 0, GLCM_NLEVELS*GLCM_NLEVELS*sizeof(int));
       }
 
       #pragma omp for collapse(2) schedule(guided)
@@ -312,13 +312,13 @@ short nodata;
             glcm_hom_sum += 1.0 / (1.0 + diff * diff);
 
             // symmetric co-occurrence matrix (only touched cells are tracked)
-            if (glcm != NULL){
+            if (comat != NULL){
               cell = gi*GLCM_NLEVELS + gj;
-              if (glcm[cell] == 0) touched[ntouched++] = cell;
-              glcm[cell]++;
+              if (comat[cell] == 0) touched[ntouched++] = cell;
+              comat[cell]++;
               cell = gj*GLCM_NLEVELS + gi;
-              if (glcm[cell] == 0) touched[ntouched++] = cell;
-              glcm[cell]++;
+              if (comat[cell] == 0) touched[ntouched++] = cell;
+              comat[cell]++;
             }
 
             glcm_count++;
@@ -333,15 +333,15 @@ short nodata;
           if (phl->glcm.ocon) glcm.con_[f][p] = (short)(glcm_con_sum / glcm_count * 10.0);
           if (phl->glcm.ohom) glcm.hom_[f][p] = (short)(glcm_hom_sum / glcm_count * 10000.0);
 
-          if (glcm != NULL){
+          if (comat != NULL){
             glcm_ent = glcm_uni = 0.0;
 
             for (k=0; k<ntouched; k++){
               cell = touched[k];
-              prob = (double)glcm[cell] / (2.0 * glcm_count);
+              prob = (double)comat[cell] / (2.0 * glcm_count);
               glcm_ent -= prob * log(prob);
               glcm_uni += prob * prob;
-              glcm[cell] = 0;            // reset for the next pixel
+              comat[cell] = 0;            // reset for the next pixel
             }
             ntouched = 0;
 
@@ -353,7 +353,7 @@ short nodata;
       }
       }
 
-      free((void*)glcm);      // free(NULL) is fine
+      free((void*)comat);      // free(NULL) is fine
       free((void*)touched);
     }
 

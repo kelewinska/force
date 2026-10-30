@@ -2508,9 +2508,9 @@ void write_par_hl_glcm(FILE *fp, bool verbose){
   fprintf(fp, "# ------------------------------------------------------------------------\n");
 
   if (verbose){
-    fprintf(fp, "This parameter defines window size of the kernel used for computing\n");
-    fprintf(fp, "GLCM statistics (in pixels). The value must be an odd integer.\n");
-    fprintf(fp, "Type: Integer. Valid values: ]3,CHUNK_SIZE]\n");
+    fprintf(fp, "# This parameter defines window size of the kernel used for computing\n");
+    fprintf(fp, "# GLCM statistics (in pixels). The value must be an odd integer.\n");
+    fprintf(fp, "# Type: Integer. Valid values: ]3,CHUNK_SIZE]\n");
   }
   fprintf(fp, "GLCM_WINDOW = 3\n");
  

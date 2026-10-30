@@ -161,7 +161,7 @@ READ_ERROR_PRIMARY = SKIP
 # This parameter defines window size of the kernel used for computing the
 # GLCM statistics (in pixels). The value must be an odd integer. 
 # Type: Integer. Valid values: ]3,CHUNK_SIZE]
-GLCM_WINDOW_SIZE = 3
+GLCM_WINDOW = 3
 # Which Gray-Level Co-occurrence Matrix (GLCM) Statistics should be computed?
 # There will be one GLCM output file for each metric with as many bands as there
 # are features (in the same order). Available metrics are contrast, dissimilarity, homogenity

@@ -43,6 +43,7 @@ void register_ftr(params_t *params, par_hl_t *phl);
 void register_smp(params_t *params, par_hl_t *phl);
 void register_txt(params_t *params, par_hl_t *phl);
 void register_lsm(params_t *params, par_hl_t *phl);
+void register_glcm(params_t *params, par_hl_t *phl);
 void register_lib(params_t *params, par_hl_t *phl);
 void alloc_ftr(par_ftr_t *ftr);
 void free_ftr(par_ftr_t *ftr);
@@ -470,7 +471,7 @@ void register_lsm(params_t *params, par_hl_t *phl){
 void register_glcm(params_t *params, par_hl_t *phl){
 
 
-  register_int_par(params,  "GLCM_WINDOW",    0, 1e6,  &phl->glcm.winsize);
+  register_int_par(params,     "GLCM_WINDOW",    0, 1e6,  &phl->glcm.winsize);
   register_enumvec_par(params, "GLCM", _TAGGED_ENUM_GLCM_, _GLCM_LENGTH_, -1, &phl->glcm.metrics, &phl->glcm.nmetrics);
   register_char_par(params,    "GLCM_BASE",  _CHAR_TEST_NONE_, &phl->glcm.base);
     
@@ -754,16 +755,6 @@ int i;
       lsm->omax = true;
     } else if (lsm->metrics[i] == _LSM_ARE_){
       lsm->oare = true;
-    // } else if (lsm->metrics[i] == _LSM_CON_) {
-    //   lsm->ocon = true;
-    // } else if (lsm->metrics[i] == _LSM_DIS_) {
-    //   lsm->odis = true;
-    // } else if (lsm->metrics[i] == _LSM_HOM_) {
-    //   lsm->ohom = true;
-    // } else if (lsm->metrics[i] == _LSM_ENT_) {
-    //   lsm->oent = true;
-    // } else if (lsm->metrics[i] == _LSM_UNI_) {
-    //   lsm->ouni = true;
     } else {
       printf("warning: unknown lsm.\n");
     }
@@ -1049,7 +1040,7 @@ double tol = 5e-3;
       register_lsm(phl->params, phl);
       break;
     case _HL_GLCM_:
-      register_lsm(phl->params, phl);
+      register_glcm(phl->params, phl);
       break;
     case _HL_LIB_:
       register_lib(phl->params, phl);

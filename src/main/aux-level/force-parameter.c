@@ -89,6 +89,7 @@ void show_modules(int exit_code){
   printf("    ML:       Machine Learning\n");
   printf("    TXT:      Texture\n");
   printf("    LSM:      Landscape Metrics\n");
+  printf("    GLCM:     Gray Level Co-occurrence Matrix\n");
   printf("    LIB:      Library Completeness\n");
   printf("\n");
 
